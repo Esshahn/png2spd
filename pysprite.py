@@ -32,21 +32,14 @@ def get_sprites(image_path,x,y):
 
 
 def show_sprite(sprites,number):
-    sprite_block = sprites.sprite_width * sprites.sprite_height
+    sprite_length = sprites.sprite_width * sprites.sprite_height
     row = int(math.ceil(number / sprites.col)) -1 
-    row_offset = row * (sprite_block * sprites.col) 
+    row_offset = row * (sprite_length * sprites.col) 
     col = number - row*sprites.col -1
     col_offset = col * sprites.sprite_width
 
     start = int(row_offset + col_offset)
-    end = int(start + sprite_block)
-    print("sprite: #",number)
-    print("row is: ",row)
-    print("row_offset is: ", row_offset)
-    print("col is: ", col)
-    print("col_offset is: ", col_offset)
-    print("start is: ", start)
-    print("end is: ", end)
+    end = int(start + sprite_length)
 
     line = 0
     pixel_count = 0
@@ -58,9 +51,9 @@ def show_sprite(sprites,number):
         pixel = sprites.pixels[pixel_pos]
 
         if pixel == 0:
-            print(".", end='')
+            print(" ", end='')
         else:
-            print("O", end='')
+            print("#", end='')
 
         if pixel_count == sprites.sprite_width:
             print()
@@ -71,7 +64,7 @@ def show_sprite(sprites,number):
 
 sprites = get_sprites("sprites-001.png", 24, 21)
 #show_sprites(sprites)
-show_sprite(sprites,15)
+show_sprite(sprites,13)
 
 
 
