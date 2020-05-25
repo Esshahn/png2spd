@@ -104,7 +104,7 @@ def write_file(filename, data):
 
 
 
-def spritesheet_to_spd(input_filename, output_filename, sprite_width, sprite_height ):
+def png_to_spd(input_filename, output_filename, sprite_width, sprite_height ):
     image = get_sprites(input_filename, sprite_width,sprite_height)
 
     all_sprites = []
@@ -123,5 +123,5 @@ def spritesheet_to_spd(input_filename, output_filename, sprite_width, sprite_hei
 
 
 
-spritesheet_to_spd("test.png","test2.spd", 24, 21)
+png_to_spd("test.png","test2.spd", 24, 21)
 
