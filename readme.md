@@ -14,7 +14,9 @@ The python script converts a PNG image file into a SpritePad compatible binary f
 
 ### Example
 `spritesheet_to_spd("spritesheet.png","sprites.spd", 24, 21)`
-loads a PNG file called `spritesheet.png` and exports it as `sprites.spd` in C64 SpritePad format
+loads a PNG file called `spritesheet.png` and exports it as `sprites.spd` in C64 SpritePad format.
+
+Note: This script can easily be included into your make file, making it quite convenient to update sprites in an image editor (I use Asesprite) and save the bitmap file into the project folder of your C64 production. At compile time, the script takes the newest image file and converts it into a binary sprite file.
 
 
 ### Dependencies
