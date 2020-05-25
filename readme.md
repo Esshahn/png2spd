@@ -8,9 +8,13 @@ The python script converts a PNG image file into a SpritePad compatible binary f
 `png_to_spd(input_file, output_file, sprite_width, sprite_height)`
 
 `input_file`: name of the PNG image. Image must be (24*X)*(21*X) pixels
+
 `output_file`: name of the sprite file (usually ends with .spd)
+
 `sprite_width`: usually 24, which is the width of a hires C64 sprite
+
 `sprite_height`: usually 21, which is the height of a hires C64 sprite
+
 
 ### Example
 `spritesheet_to_spd("spritesheet.png","sprites.spd", 24, 21)`
