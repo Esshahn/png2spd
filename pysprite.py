@@ -1,13 +1,25 @@
-#############################################
+
 # 
 #   sprite sheet to c64 sprite converter
 #   (c)2020 by awsm of Mayday!
+#   http://www.awsm.de
 #
-#   converts a bitmap with a spritesheet of (24*X)*(21*x) pixels
+#   converts a bitmap with a spritesheet
 #   into a sprite data binary
 #
 #
-#############################################
+#   usage:
+#   spritesheet_to_spd(input_file,output_file, sprite_width, sprite_height)
+#   input_file: name of the PNG image. Image must be (24*X)*(21*X) pixels
+#   output_file: name of the sprite file (usually ends with .spd)
+#   sprite_width: usually 24, which is the width of a hires C64 sprite
+#   sprite_height: usually 21, which is the height of a hires C64 sprite
+#
+#   example:
+#   spritesheet_to_spd("spritesheet.png","sprites.spd", 24, 21)
+#   loads a PNG file called "spritesheet.png" and exports it
+#   as "sprites.spd" in C64 SpritePad format
+#
 
 
 
@@ -61,7 +73,6 @@ def convert_sprite(sprites,number):
 
 
 def bits_to_bytes(data):
-
     byte_counter = 0
     byte = ""
     bytes_array = []
@@ -81,7 +92,21 @@ def bits_to_bytes(data):
 
 
 
-def spritesheet_to_spd(filename, image):
+def write_file(filename, data):
+    if not filename:
+        filename = "test"
+
+    newFile = open(filename, "wb")
+    file_array = [11,8,6]
+    file_array = file_array + data 
+    newFileByteArray = bytearray(file_array)
+    newFile.write(newFileByteArray)
+
+
+
+def spritesheet_to_spd(input_filename, output_filename, sprite_width, sprite_height ):
+    image = get_sprites(input_filename, sprite_width,sprite_height)
+
     all_sprites = []
 
     for i in range(1,image.total+1):
@@ -89,22 +114,14 @@ def spritesheet_to_spd(filename, image):
         sprite_bytes = bits_to_bytes(sprite_data)
         all_sprites = all_sprites + sprite_bytes
     
-    write_file(filename,all_sprites)
+    write_file(output_filename,all_sprites)
 
 
-def write_file(filename, data):
-    if not filename:
-        filename = "test"
 
-    newFile = open(filename+".spd", "wb")
-    file_array = [11,8,6]
-    file_array = file_array + data 
-    newFileByteArray = bytearray(file_array)
-    newFile.write(newFileByteArray)
 
 #-----------------------------------------------------------------
 
 
-image = get_sprites("sprites-001.png", 24, 21)
-spritesheet_to_spd("hallo",image)
+
+spritesheet_to_spd("test.png","test2.spd", 24, 21)
 
